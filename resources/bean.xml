@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		">
+
+	<!-- 开启组件扫描 -->
+	<context:component-scan base-package="cn.sjcloud.apm" />
+
+	<!-- 开启Spring注解 -->
+	<context:annotation-config />
+
+	<!-- 定义数据源Bean，使用C3P0数据源实现 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<!-- 指定连接数据库的驱动 -->
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<!-- 指定连接数据库的URL -->
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.153.154:3306/apm?useUnicode=true&amp;characterEncoding=utf-8" />
+		<!-- 指定连接数据库的用户名 -->
+		<property name="user" value="root" />
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="123456" />
+		<!-- 指定连接数据库连接池的最大连接数 -->
+		<property name="maxPoolSize" value="40" />
+		<!-- 指定连接数据库连接池的最小连接数 -->
+		<property name="minPoolSize" value="1" />
+		<!-- 指定连接数据库连接池的初始化连接数 -->
+		<property name="initialPoolSize" value="1" />
+		<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+		<property name="maxIdleTime" value="20" />
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+
+		<!-- 注解方式配置Entity -->
+		<property name="annotatedClasses">
+			<list>
+				<value>cn.sjcloud.apm.core.entity.TSysUsers</value>
+				<value>cn.sjcloud.apm.core.entity.TMenu</value>
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- 配置事务 -->
+	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 默认目录 -->
+<decorators defaultdir="/page/common">
+	<excludes>
+		<pattern>/login!doInit.action</pattern>
+		<pattern>/login!forwardRegister.action</pattern>
+		<pattern>/*!doInitEdit.action</pattern>
+		<pattern>/*.html</pattern>
+	</excludes>
+	
+    <decorator name="main" page="decorator.jsp">
+        <pattern>/*.action</pattern>
+    </decorator>
+</decorators>

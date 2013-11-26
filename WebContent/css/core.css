@@ -1,0 +1,26 @@
+.validate-error {
+	color: #b94a48;
+}
+
+.title-sortable {
+	cursor: pointer;
+}
+
+/** 两行间的空 */
+.row-space {
+	padding-bottom: 10px;
+}
+
+/** 检索区域的Label */
+.search-label {
+	text-align: left !important; 
+	padding-left: 0px !important
+}
+
+/** Table的标题行 */
+.table-bordered thead > tr {
+	color: rgb(112, 112, 112);
+	font-weight: normal;
+	background: linear-gradient(rgb(248, 248, 248) 0px, rgb(236, 236, 236)
+		100% ) repeat-x rgb(242, 242, 242);
+}

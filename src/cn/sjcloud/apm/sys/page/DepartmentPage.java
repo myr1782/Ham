@@ -10,30 +10,36 @@ public class DepartmentPage extends BasePage {
 	private List<TDepartment> entityList;
 	
 	private Integer id;
-	private String departmentName;
-	private String departmentDesc;
+	
+	private String DepartmentName;
 	
 	public String getDepartmentName() {
-		return departmentName;
+		return DepartmentName;
 	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
+	public void setDepartmentName(String DepartmentName) {
+		this.DepartmentName = DepartmentName;
 	}
+	private String DepartmentDesc;
+	
 	public String getDepartmentDesc() {
-		return departmentDesc;
+		return DepartmentDesc;
 	}
-	public void setDepartmentDesc(String departmentDesc) {
-		this.departmentDesc = departmentDesc;
+	public void setDepartmentDesc(String DepartmentDesc) {
+		this.DepartmentDesc = DepartmentDesc;
 	}
+	
 	public List<TDepartment> getEntityList() {
 		return entityList;
 	}
+	
 	public void setEntityList(List<TDepartment> entityList) {
 		this.entityList = entityList;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}

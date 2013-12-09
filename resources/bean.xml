@@ -23,7 +23,7 @@
 		<!-- 指定连接数据库的驱动 -->
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!-- 指定连接数据库的URL -->
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.153.154:3306/apm?useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/apm?useUnicode=true&amp;characterEncoding=utf-8" />
 		<!-- 指定连接数据库的用户名 -->
 		<property name="user" value="root" />
 		<!-- 指定连接数据库的密码 -->
@@ -52,8 +52,9 @@
 		<!-- 注解方式配置Entity -->
 		<property name="annotatedClasses">
 			<list>
-				<value>cn.sjcloud.apm.core.entity.TSysUsers</value>
 				<value>cn.sjcloud.apm.core.entity.TMenu</value>
+				<value>cn.sjcloud.apm.core.entity.TDepartment</value>
+				<value>cn.sjcloud.apm.core.entity.TUser</value>
 			</list>
 		</property>
 

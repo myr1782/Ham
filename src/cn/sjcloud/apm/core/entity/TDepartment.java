@@ -15,17 +15,16 @@ import javax.persistence.Table;
 public class TDepartment implements java.io.Serializable {
 
 	// Fields
-	private static final long serialVersionUID = -4844619251132685700L;
+
 	private Integer id;
 	private Integer parentId;
 	private String departmentName;
-	private String departmentCode;
 	private String departmentDesc;
 	private String createUser;
 	private Timestamp createTime;
 	private String updateUser;
 	private Timestamp updateTime;
-	private String isAbled;
+	private String deleteFlag;
 
 	// Constructors
 
@@ -35,18 +34,16 @@ public class TDepartment implements java.io.Serializable {
 
 	/** full constructor */
 	public TDepartment(Integer parentId, String departmentName,
-			String departmentCode, String departmentDesc, String createUser,
-			Timestamp createTime, String updateUser, Timestamp updateTime,
-			String isAbled) {
+			String departmentDesc, String createUser, Timestamp createTime,
+			String updateUser, Timestamp updateTime, String deleteFlag) {
 		this.parentId = parentId;
 		this.departmentName = departmentName;
-		this.departmentCode = departmentCode;
 		this.departmentDesc = departmentDesc;
 		this.createUser = createUser;
 		this.createTime = createTime;
 		this.updateUser = updateUser;
 		this.updateTime = updateTime;
-		this.isAbled = isAbled;
+		this.deleteFlag = deleteFlag;
 	}
 
 	// Property accessors
@@ -77,15 +74,6 @@ public class TDepartment implements java.io.Serializable {
 
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
-	}
-
-	@Column(name = "department_code", length = 100)
-	public String getDepartmentCode() {
-		return this.departmentCode;
-	}
-
-	public void setDepartmentCode(String departmentCode) {
-		this.departmentCode = departmentCode;
 	}
 
 	@Column(name = "department_desc", length = 200)
@@ -133,13 +121,13 @@ public class TDepartment implements java.io.Serializable {
 		this.updateTime = updateTime;
 	}
 
-	@Column(name = "is_abled", length = 1)
-	public String getIsAbled() {
-		return this.isAbled;
+	@Column(name = "delete_flag", length = 1)
+	public String getDeleteFlag() {
+		return this.deleteFlag;
 	}
 
-	public void setIsAbled(String isAbled) {
-		this.isAbled = isAbled;
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 
 }

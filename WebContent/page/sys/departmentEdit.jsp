@@ -5,20 +5,21 @@
 		<!-- 隐藏域 -->
 		<!-- 主键值 -->
 		<s:hidden name="id" />
-		<div class="form-group">
-			<label class="col-xs-2 control-label">部门名称</label>
-			<div class="col-xs-10">
-				<s:textfield id="dept" cssClass="form-control ck-required" name="departmentName" />
+				<div class="form-group">
+			<label class="col-md-2 control-label">部门名称</label>
+			<div class="col-md-10">
+				<s:textfield cssClass="form-control" name="DepartmentName" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-2 control-label">部门描述</label>
-			<div class="col-xs-10">
-				<s:textfield cssClass="form-control ck-required" name="departmentDesc" />
+			<label class="col-md-2 control-label">部门描述</label>
+			<div class="col-md-10">
+				<s:textfield cssClass="form-control" name="DepartmentDesc" />
 			</div>
 		</div>
+				
 		<div class="form-group">
-			<div class="col-xs-offset-2 col-xs-10">
+			<div class="col-md-offset-2 col-md-10">
 				<button type="button" onclick="save()" class="btn btn-primary btn-lg">保存</button>
 			</div>
 		</div>

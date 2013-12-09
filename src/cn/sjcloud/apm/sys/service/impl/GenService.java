@@ -30,7 +30,7 @@ import freemarker.template.Template;
 @Service
 public class GenService extends BaseService implements GenServiceIF {
 
-	private static final String EXCEL_FILE_PATH = "c:/WorkStation/gen.xls";
+	private static final String EXCEL_FILE_PATH = "D:/WorkStation/gen.xls";
 
 	/** 忽略处理 */
 	private static final int IGNORE = 0;

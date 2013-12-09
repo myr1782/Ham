@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,10 +60,10 @@ public class DepartmentService extends BaseService implements DepartmentServiceI
 		Map<String, Object> conditionMap = new HashMap<String, Object>();
 		// 检索条件
 		if (!StringUtils.isEmpty(page.getDepartmentName())) {
-			conditionMap.put("departmentName", page.getDepartmentName());
+			conditionMap.put("DepartmentName", page.getDepartmentName());
 		}
 		if (!StringUtils.isEmpty(page.getDepartmentDesc())) {
-			conditionMap.put("departmentDesc", page.getDepartmentDesc());
+			conditionMap.put("DepartmentDesc", page.getDepartmentDesc());
 		}
 		// 执行DAO检索
 		findActually(page, conditionMap);
@@ -77,7 +77,11 @@ public class DepartmentService extends BaseService implements DepartmentServiceI
 	@Transactional
 	public void findEntity(DepartmentPage page) {
 		TDepartment entity = dao.load(TDepartment.class, page.getId());
-		BeanUtils.copyProperties(entity, page);
+		try {
+			BeanUtils.copyProperties(page, entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -93,7 +97,11 @@ public class DepartmentService extends BaseService implements DepartmentServiceI
 		} else { // 新增的场合
 			entity = new TDepartment();
 		}
-		BeanUtils.copyProperties(page, entity);
+		try {
+			BeanUtils.copyProperties(entity, page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		dao.save(entity);
 	}
 

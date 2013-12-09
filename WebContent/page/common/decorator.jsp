@@ -38,6 +38,12 @@
 			autoOpen : false,
 			height : 400,
 			width : 700,
+			buttons : {
+				"保存" : function() {
+					$( this ).dialog( "close" );
+					save();
+				},
+			}
 		});
 
 		$("table>thead>tr>th.sortable")

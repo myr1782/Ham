@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 开启调试模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- Spring接管Action -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 请求参数的编码方式 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段打开 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段关闭 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 资源文件名 -->
+	<constant name="struts.custom.i18n.resources" value="messageResource" />
+	<!-- 主题:简单主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="apm" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+				<!-- Validation开启方法级别的Annotation -->
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="validation">
+					<param name="validateAnnotatedMethodOnly">true</param>
+					<param name="excludeMethods">back,cancel</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">back,cancel</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultStack" />
+	</package>
+
+	<!-- 增加JSON支持 -->
+	<package name="json-default" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+		<interceptors>
+			<interceptor name="json"
+				class="org.apache.struts2.json.JSONInterceptor"></interceptor>
+		</interceptors>
+	</package>
+</struts>
